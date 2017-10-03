@@ -1,4 +1,4 @@
-package apirest.resources;
+package apawapi.apirest.resources;
 
 public class ProviderResource {
 

@@ -1,4 +1,4 @@
-package http;
+package apawapi.http;
 
 public class HttpResponse extends HttpBase {
 

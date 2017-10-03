@@ -1,6 +1,6 @@
-package http;
+package apawapi.http;
 
-import apirest.Dispatcher;
+import apawapi.apirest.Dispatcher;
 
 public class Server {
     private Dispatcher dispatcher = new Dispatcher();

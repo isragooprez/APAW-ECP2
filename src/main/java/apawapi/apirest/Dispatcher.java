@@ -1,10 +1,10 @@
-package apirest;
+package apawapi.apirest;
 
-import apirest.resources.ArticleResource;
-import apirest.resources.ProviderResource;
-import http.HttpResponse;
-import http.HttpRequest;
-import http.HttpStatus;
+import apawapi.apirest.resources.ArticleResource;
+import apawapi.apirest.resources.ProviderResource;
+import apawapi.http.HttpRequest;
+import apawapi.http.HttpResponse;
+import apawapi.http.HttpStatus;
 
 public class Dispatcher {
 	private ArticleResource ArticleResource = new ArticleResource();
@@ -34,6 +34,13 @@ public class Dispatcher {
 
 	public void doGet(HttpRequest request, HttpResponse response) {
 		try {
+			if (request.isEqualsPath(ArticleResource.ARTICLES + ArticleResource.ID)) {
+
+//				response.setBody(ArticleResource.readArticle(Integer.valueOf(request.paths()[1].toString())));
+
+			} else {
+
+			}
 
 		} catch (Exception e) {
 			responseError(response, e);
