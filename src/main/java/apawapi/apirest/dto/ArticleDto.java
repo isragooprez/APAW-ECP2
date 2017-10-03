@@ -6,6 +6,7 @@ public class ArticleDto {
 	private String reference;
 	private long stock;
 	private boolean discotinued;
+	
 
 	public int getId() {
 		return id;
