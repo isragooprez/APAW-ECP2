@@ -8,7 +8,7 @@ import apawapi.http.HttpStatus;
 
 public class Dispatcher {
 	private ArticleResource ArticleResource = new ArticleResource();
-	private ProviderResource providerResource = new ProviderResource();
+//	private ProviderResource providerResource = new ProviderResource();
 
 	private void responseError(HttpResponse response, Exception e) {
 		response.setBody("{\"Error:\":\":\"" + e + "\"}");
@@ -36,7 +36,7 @@ public class Dispatcher {
 		try {
 			if (request.isEqualsPath(ArticleResource.ARTICLES + ArticleResource.ID)) {
 
-//				response.setBody(ArticleResource.readArticle(Integer.valueOf(request.paths()[1].toString())));
+				response.setBody(ArticleResource.readArticle(Integer.valueOf(request.paths()[1])).toString());
 
 			} else {
 

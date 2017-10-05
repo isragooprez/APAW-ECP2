@@ -1,12 +1,20 @@
 package apawapi.apirest.dto;
 
+import apawapi.apirest.entity.Article;
+
 public class ArticleDto {
 
 	private int id;
 	private String reference;
-	private long stock;
-	private boolean discotinued;
 	
+	public ArticleDto() {
+
+	}
+
+	public ArticleDto(Article article) {
+		this.id = article.getId();
+		this.reference = article.getReference();
+	}
 
 	public int getId() {
 		return id;
@@ -24,28 +32,9 @@ public class ArticleDto {
 		this.reference = reference;
 	}
 
-	public long getStock() {
-		return stock;
-	}
-
-	public void setStock(long stock) {
-		this.stock = stock;
-	}
-
-	public boolean isDiscotinued() {
-		return discotinued;
-	}
-
-	public void setDiscotinued(boolean discotinued) {
-		this.discotinued = discotinued;
-	}
-
 	@Override
 	public String toString() {
-		return "ArticleDto [id=" + id + ", reference=" + reference + ", stock=" + stock + ", discotinued=" + discotinued
-				+ "]";
+		return "ArticleDto [id=" + id + ", reference=" + reference + "]";
 	}
-	
-	
 
 }
