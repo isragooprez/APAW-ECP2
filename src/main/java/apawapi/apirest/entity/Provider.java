@@ -6,13 +6,13 @@ public class Provider {
 	private String company;
 	private String adress;
 
-	private Provider(int id, String company) {
-		this.id = id;
+	
+	public Provider(String company) {
 		this.company = company;
 	}
 
 	public Provider() {
-		this(0, "");
+		this("");
 	}
 
 	public int getId() {

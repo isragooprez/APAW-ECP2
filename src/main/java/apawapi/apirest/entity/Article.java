@@ -9,11 +9,12 @@ public class Article {
 	private Provider provider;
 
 	public Article() {
-		
+
 	}
 
-	public Article(int id) {
-		this.id = id;
+	public Article(String reference, Provider provider) {
+		this.reference = reference;
+		this.provider = provider;
 	}
 
 	public int getId() {
@@ -61,7 +62,5 @@ public class Article {
 		return "Article [id=" + id + ", reference=" + reference + ", stock=" + stock + ", discontinued=" + discontinued
 				+ ", provider=" + provider + "]";
 	}
-	
-	
 
 }

@@ -1,5 +1,6 @@
 package apawapi.apirest.dao;
 
+
 public abstract class DaoFactory {
 
 	private static DaoFactory factory = null;
@@ -14,6 +15,7 @@ public abstract class DaoFactory {
 	}
 	
 	public abstract ArticleDao getArticleDao();
+	public abstract ProviderDao getProviderDao();
 	
 
 }

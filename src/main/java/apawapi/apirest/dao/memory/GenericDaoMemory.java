@@ -7,19 +7,24 @@ import java.util.Map;
 import apawapi.apirest.dao.GenericDao;
 
 public abstract class GenericDaoMemory<T> implements GenericDao<T, Integer> {
-	private Map<Integer, T> refereces;
-	private int id;
 
-	public GenericDaoMemory() {
-		this.id = 1;
+	private Map<Integer, T> refereces;
+	private Integer id;
+
+	protected void setRefereces(Map<Integer, T> refereces) {
+		this.refereces = refereces;
 	}
+
+	protected abstract Integer getId(T entity);
+
+	protected abstract void setId(T entity, Integer id);
 
 	@Override
 	public void create(T entity) {
+		
 		refereces.put(id, entity);
-		this.setId(entity, id);
-		id++;
-
+        this.setId(entity, id);
+        id++;
 	}
 
 	@Override
@@ -32,9 +37,7 @@ public abstract class GenericDaoMemory<T> implements GenericDao<T, Integer> {
 	public void update(T entity) {
 		if (refereces.containsKey(this.getId(entity))) {
 			refereces.put(this.getId(entity), entity);
-
 		}
-
 	}
 
 	@Override
@@ -47,13 +50,5 @@ public abstract class GenericDaoMemory<T> implements GenericDao<T, Integer> {
 	public List<T> findAll() {
 		return new ArrayList<>(refereces.values());
 	}
-
-	protected void setRefereces(Map<Integer, T> refereces) {
-		this.refereces = refereces;
-	}
-
-	protected abstract Integer getId(T entity);
-
-	protected abstract void setId(T entity, Integer id);
 
 }
