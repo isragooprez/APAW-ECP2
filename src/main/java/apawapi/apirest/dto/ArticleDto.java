@@ -34,7 +34,9 @@ public class ArticleDto {
 
 	@Override
 	public String toString() {
-		return "ArticleDto [id=" + id + ", reference=" + reference + "]";
+		return "{\"id\":\"" + id + ",\"reference\":\"" + reference + "\"}";
+
+
 	}
 
 }
