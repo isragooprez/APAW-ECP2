@@ -41,7 +41,7 @@ public class ProviderDto {
 
 	@Override
 	public String toString() {
-		return "ProviderDto [id=" + id + ", company=" + company + ", adress=" + adress + "]";
+		return "{\"id\":" + id + ",\"company\":\"" + company + "\",\"adress\":\"" + adress + "\"}";
 	}
 
 }

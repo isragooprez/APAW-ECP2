@@ -51,10 +51,10 @@ public class ProviderResourceFunctionalTesting {
 		DaoFactory.setFactory(new DaoMemoryFactory());
 		this.createProvider();
 		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(ProviderResource.PROVIDERS).path(ProviderResource.ID).expandPath("1").build();
-		System.out.println( new HttpClientService().httpRequest(request).getBody());
-		System.out.println("{\"id\":1,\"company\":\"Israel\",\"adress\":null}");
+//		System.out.println( new HttpClientService().httpRequest(request).getBody());
+//		System.out.println("{\"id\":1,\"company\":\"Israel\",\"adress\":\"null\"}");
 
-		assertEquals("{\"id\":1,\"company\":\"Israel\",\"adress\":null}", new HttpClientService().httpRequest(request).getBody());
+		assertEquals("{\"id\":1,\"company\":\"Israel\",\"adress\":\"null\"}", new HttpClientService().httpRequest(request).getBody());
 
 	}
 
