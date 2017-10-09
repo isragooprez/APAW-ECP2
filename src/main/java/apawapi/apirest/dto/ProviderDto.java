@@ -1,25 +1,18 @@
 package apawapi.apirest.dto;
 
+import apawapi.apirest.entity.Provider;
+
 public class ProviderDto {
 	private int id;
 	private String company;
 	private String adress;
 
-	public ProviderDto(int id, String company, String adress) {
-		super();
-		this.id = id;
-		this.company = company;
-		this.adress = adress;
-	}
-
-	public ProviderDto(int id, String company) {
-		super();
-		this.id = id;
-		this.company = company;
-	}
-
 	public ProviderDto() {
-		this(0, "");
+	}
+
+	public ProviderDto(Provider provider) {
+		id = provider.getId();
+		company = provider.getCompany();
 	}
 
 	public int getId() {
@@ -50,7 +43,5 @@ public class ProviderDto {
 	public String toString() {
 		return "ProviderDto [id=" + id + ", company=" + company + ", adress=" + adress + "]";
 	}
-	
-	
 
 }
