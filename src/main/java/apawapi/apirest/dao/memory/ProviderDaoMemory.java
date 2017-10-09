@@ -1,42 +1,25 @@
 package apawapi.apirest.dao.memory;
 
-import java.util.List;
+import java.util.HashMap;
 
 import apawapi.apirest.dao.ProviderDao;
 import apawapi.apirest.entity.Provider;
 
-public class ProviderDaoMemory implements ProviderDao {
+public class ProviderDaoMemory extends GenericDaoMemory<Provider> implements ProviderDao {
 
-	@Override
-	public void create(Provider entity) {
-		// TODO Auto-generated method stub
-
+	public ProviderDaoMemory() {
+		this.setMap(new HashMap<Integer, Provider>());
 	}
 
 	@Override
-	public void update(Provider entity) {
-		// TODO Auto-generated method stub
-
+	protected Integer getId(Provider entity) {
+		return entity.getId();
 	}
 
 	@Override
-	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+	protected void setId(Provider entity, Integer id) {
+		entity.setId(id);
 
-	}
-
-	@Override
-	public List<Provider> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public Provider read(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

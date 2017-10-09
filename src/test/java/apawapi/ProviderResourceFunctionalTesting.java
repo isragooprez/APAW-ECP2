@@ -23,7 +23,7 @@ public class ProviderResourceFunctionalTesting {
 
 	private void createProvider() {
 		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(ProviderResource.PROVIDERS)
-				.body("uno").build();
+				.body("Israel").build();
 		new HttpClientService().httpRequest(request);
 
 	}
@@ -39,7 +39,7 @@ public class ProviderResourceFunctionalTesting {
 				.build();
 		new HttpClientService().httpRequest(request);
 	}
-	
+
 	@Test(expected = HttpException.class)
 	public void testCreateWithOutProviderEmpty() {
 		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(ProviderResource.PROVIDERS).build();
@@ -48,10 +48,13 @@ public class ProviderResourceFunctionalTesting {
 
 	@Test
 	public void testReadProvider() {
+		DaoFactory.setFactory(new DaoMemoryFactory());
 		this.createProvider();
-		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(ProviderResource.PROVIDERS)
-				.path(ProviderResource.ID).expandPath("1").build();
-		assertEquals("{\"id\":1,\"company\":\"uno\"}", new HttpClientService().httpRequest(request).getBody());
+		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(ProviderResource.PROVIDERS).path(ProviderResource.ID).expandPath("1").build();
+		System.out.println( new HttpClientService().httpRequest(request).getBody());
+		System.out.println("{\"id\":1,\"company\":\"Israel\",\"adress\":null}");
+
+		assertEquals("{\"id\":1,\"company\":\"Israel\",\"adress\":null}", new HttpClientService().httpRequest(request).getBody());
 
 	}
 
