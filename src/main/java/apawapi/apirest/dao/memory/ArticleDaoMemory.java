@@ -11,7 +11,7 @@ public class ArticleDaoMemory extends GenericDaoMemory<Article> implements Artic
 	
 
 	public ArticleDaoMemory() {
-		this.setRefereces(new HashMap<Integer, Article>());
+		this.setMap(new HashMap<Integer, Article>());
 	}
 
 	@Override

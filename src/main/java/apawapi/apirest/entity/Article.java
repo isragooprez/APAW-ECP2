@@ -8,10 +8,6 @@ public class Article {
 	private boolean discontinued;
 	private Provider provider;
 
-	public Article() {
-
-	}
-
 	public Article(String reference, Provider provider) {
 		this.reference = reference;
 		this.provider = provider;

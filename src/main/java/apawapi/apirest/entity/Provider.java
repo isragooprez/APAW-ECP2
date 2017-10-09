@@ -6,7 +6,6 @@ public class Provider {
 	private String company;
 	private String adress;
 
-	
 	public Provider(String company) {
 		this.company = company;
 	}
