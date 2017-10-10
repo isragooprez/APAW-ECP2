@@ -48,7 +48,6 @@ public class ProviderResourceFunctionalTesting {
 
 	@Test
 	public void testReadProvider() {
-		DaoFactory.setFactory(new DaoMemoryFactory());
 		this.createProvider();
 		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(ProviderResource.PROVIDERS).path(ProviderResource.ID).expandPath("1").build();
 

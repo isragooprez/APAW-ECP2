@@ -40,7 +40,9 @@ public class Provider {
 
 	@Override
 	public String toString() {
-		return "Provider [id=" + id + ", company=" + company + ", adress=" + adress + "]";
+		return String.format("Provider [id=%s, company=%s, adress=%s]", id, company, adress);
 	}
+
+	
 
 }

@@ -8,7 +8,7 @@ import apawapi.http.HttpResponse;
 import apawapi.http.HttpStatus;
 
 public class Dispatcher {
-	private ArticleResource ArticleResource = new ArticleResource();
+	private ArticleResource articleResource = new ArticleResource();
 
 	private ProviderResource providerResource = new ProviderResource();
 
@@ -22,11 +22,13 @@ public class Dispatcher {
 			if (request.isEqualsPath(ArticleResource.ARTICLES)) {
 				String providerId = request.getBody().split(":")[0]; // body="themeId:vote"
 				String articleReference = request.getBody().split(":")[1];
-				ArticleResource.createArticle(articleReference, Integer.valueOf(providerId));
+				articleResource.createArticle(articleReference, Integer.valueOf(providerId));
 				response.setStatus(HttpStatus.CREATED);
 			} else if (request.isEqualsPath(ProviderResource.PROVIDERS)) {
 				providerResource.createProvider(request.getBody());
 				response.setStatus(HttpStatus.CREATED);
+			} else if (request.isEqualsPath(ArticleResource.ARTICLES + ArticleResource.ID)) {
+				response.setBody(articleResource.readArticle(Integer.valueOf(request.paths()[1])).toString());
 			} else {
 				throw new RequestInvalidException(request.getPath());
 			}
@@ -47,14 +49,13 @@ public class Dispatcher {
 	public void doGet(HttpRequest request, HttpResponse response) {
 		try {
 			if (request.isEqualsPath(ArticleResource.ARTICLES + ArticleResource.ID)) {
-				response.setBody(ArticleResource.readArticle(Integer.valueOf(request.paths()[1])).toString());
-			}
-			if (request.isEqualsPath(ProviderResource.PROVIDERS)) {
+				response.setBody(articleResource.readArticle(Integer.valueOf(request.paths()[1])).toString());
+			}else if (request.isEqualsPath(ProviderResource.PROVIDERS)) {
 				response.setBody(providerResource.providerList().toString());
 			} else if (request.isEqualsPath(ProviderResource.PROVIDERS + ProviderResource.ID)) {
 				response.setBody(providerResource.readProvider(Integer.valueOf(request.paths()[1])).toString());
 			} else if (request.isEqualsPath(ArticleResource.ARTICLES)) {
-				response.setBody(ArticleResource.toString());
+				response.setBody(articleResource.toString());
 			} else {
 				throw new RequestInvalidException(request.getPath());
 			}
