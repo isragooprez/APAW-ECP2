@@ -55,8 +55,10 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", reference=" + reference + ", stock=" + stock + ", discontinued=" + discontinued
-				+ ", provider=" + provider + "]";
+		return String.format("Article [id=%s, reference=%s, stock=%s, discontinued=%s, provider=%s]", id, reference,
+				stock, discontinued, provider);
 	}
+
+	
 
 }

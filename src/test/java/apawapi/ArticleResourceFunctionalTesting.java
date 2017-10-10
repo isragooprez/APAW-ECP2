@@ -2,6 +2,8 @@ package apawapi;
 
 
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import apawapi.apirest.dao.memory.DaoMemoryFactory;
 import apawapi.apirest.resources.ArticleResource;
 import apawapi.apirest.resources.ProviderResource;
 import apawapi.http.HttpClientService;
+import apawapi.http.HttpException;
 import apawapi.http.HttpMethod;
 import apawapi.http.HttpRequest;
 import apawapi.http.HttpRequestBuilder;
@@ -20,7 +23,7 @@ import apawapi.http.HttpRequestBuilder;
 public class ArticleResourceFunctionalTesting {
 	
 	
-//	private HttpRequest request;
+	private HttpRequest request;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -29,7 +32,7 @@ public class ArticleResourceFunctionalTesting {
     @Before
     public void before() {
         DaoFactory.setFactory(new DaoMemoryFactory());
-//        request = new HttpRequest();
+        request = new HttpRequest();
     }
 
 
@@ -43,9 +46,6 @@ public class ArticleResourceFunctionalTesting {
 		this.createProvider();
 		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(ArticleResource.ARTICLES).body("1:1").build();
 		new HttpClientService().httpRequest(request);
-		
-		request = new HttpRequestBuilder().method(HttpMethod.POST).path(ArticleResource.ARTICLES).body("5:1").build();
-		new HttpClientService().httpRequest(request);
 	}
 	
 	
@@ -55,23 +55,38 @@ public class ArticleResourceFunctionalTesting {
 		CreateArticle();
 	}
 	
+	@Test(expected = HttpException.class)
+	public void testCreateArticleWitoutID() {
+		createProvider();
+		request = new HttpRequestBuilder().method(HttpMethod.POST).path(ArticleResource.ARTICLES).body("5:x").build();
+		new HttpClientService().httpRequest(request);
+	}
+	
+
+	
 	@Test
-	public void testCreatep() {
+	public void testCreateProvider() {
 		createProvider();
 	}
 
-//	@Test
-//	public void testReadArticle() {
-//		this.createProvider();
-//		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(ArticleResource.ARTICLES).path(ArticleResource.ID).expandPath("1").build();
-//		System.out.println(request.getBody());
-//		assertEquals("{\"id\":1,\"reference\":\"article2\"}", new HttpClientService().httpRequest(request).getBody());
-//	}
-//	
+	@Test
+	public void testReadArticle() {
+		this.CreateArticle();
+		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(ArticleResource.ARTICLES).path(ArticleResource.ID).expandPath("1").build();
+	
+		System.out.println(new HttpClientService().httpRequest(request).getBody());
+//		System.out.println("{\"id\":2,\"reference\":\"1\"}");
+		
+		
+		assertEquals("{\"id\":1,\"reference\":\"1\"}", new HttpClientService().httpRequest(request).getBody());
+	}
 //	@Test 
 //	public void testListArticle() {
 //		this.createProvider();
 //		HttpRequest request=new HttpRequestBuilder().method(HttpMethod.GET).path(ArticleResource.ARTICLES).build();
+//		
+//		System.out.println(new HttpClientService().httpRequest(request).getBody());
+//		System.out.println("{[\"id\":1,\"reference\":\"article2\"]}");
 //		assertEquals("{[\"id\":1,\"reference\":\"article2\"]}", new HttpClientService().httpRequest(request).getBody());
 //	}
 

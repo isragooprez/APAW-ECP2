@@ -20,7 +20,7 @@ public class ProviderControllerIT {
 	}
 
 	@Test
-	public void testReadTheme() {
+	public void testReadProvider() {
 		assertEquals("UMP", providerController.readProvider(1).get().getCompany());
 	}
 
