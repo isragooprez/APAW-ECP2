@@ -5,7 +5,8 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ArticleResourceFunctionalTesting.class, ProviderResourceFunctionalTesting.class })
+@SuiteClasses({ ArticleResourceFunctionalTesting.class, 
+	ProviderResourceFunctionalTesting.class })
 public class AllArticleFunctionalTestings {
 
 	public AllArticleFunctionalTestings() {

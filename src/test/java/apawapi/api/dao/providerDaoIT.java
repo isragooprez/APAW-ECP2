@@ -5,9 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import apawapi.apirest.dao.ArticleDao;
 import apawapi.apirest.dao.DaoFactory;
-import apawapi.apirest.dao.ProviderDao;
+
 import apawapi.apirest.dao.memory.DaoMemoryFactory;
 import apawapi.apirest.entity.Provider;
 
@@ -43,9 +42,9 @@ public class providerDaoIT {
 
 	@Test
 	public void testReadNoExistIdArticleDao() {
-		 createProvider();
+		createProvider();
 		assertNull(DaoFactory.getFactory().getProviderDao().read(10));
-		
+
 	}
 
 }
