@@ -34,8 +34,8 @@ public class ArticleController {
 	}
 
 	public List<ArticleDto> articleList() {
-		List<ArticleDto> articleDtoList = new ArrayList<>();
 		List<Article> articles = DaoFactory.getFactory().getArticleDao().findAll();
+		List<ArticleDto> articleDtoList = new ArrayList<>();
 		for (Article article : articles) {
 			articleDtoList.add(new ArticleDto(article));
 		}

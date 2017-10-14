@@ -48,6 +48,12 @@ public class ArticleResourceFunctionalTesting {
 		new HttpClientService().httpRequest(request);
 	}
 	
+	private void CreateArticle2() {
+		this.createProvider();
+		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(ArticleResource.ARTICLES).body("1:2").build();
+		new HttpClientService().httpRequest(request);
+	}
+	
 	
 	
 	@Test
@@ -80,14 +86,15 @@ public class ArticleResourceFunctionalTesting {
 		
 		assertEquals("{\"id\":1,\"reference\":\"1\"}", new HttpClientService().httpRequest(request).getBody());
 	}
-//	@Test 
-//	public void testListArticle() {
-//		this.createProvider();
-//		HttpRequest request=new HttpRequestBuilder().method(HttpMethod.GET).path(ArticleResource.ARTICLES).build();
-//		
-//		System.out.println(new HttpClientService().httpRequest(request).getBody());
+	@Test 
+	public void testListArticle() {
+		this.CreateArticle();
+		this.CreateArticle2();
+		HttpRequest request=new HttpRequestBuilder().method(HttpMethod.GET).path(ArticleResource.ARTICLES).build();
+		
+		System.out.println(new HttpClientService().httpRequest(request).getBody());
 //		System.out.println("{[\"id\":1,\"reference\":\"article2\"]}");
 //		assertEquals("{[\"id\":1,\"reference\":\"article2\"]}", new HttpClientService().httpRequest(request).getBody());
-//	}
+	}
 
 }

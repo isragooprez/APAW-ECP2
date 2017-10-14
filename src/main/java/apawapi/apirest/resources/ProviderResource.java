@@ -1,13 +1,9 @@
 package apawapi.apirest.resources;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import apawapi.apirest.controllers.ProviderController;
-import apawapi.apirest.dao.DaoFactory;
 import apawapi.apirest.dto.ProviderDto;
-import apawapi.apirest.entity.Provider;
 import apawapi.apirest.resources.exceptions.ProviderFieldInvalidException;
 import apawapi.apirest.resources.exceptions.ProviderIdNotFoundException;
 
@@ -35,11 +31,6 @@ public class ProviderResource {
 	}
 
 	public List<ProviderDto> providerList() {
-		List<Provider> providerList = DaoFactory.getFactory().getProviderDao().findAll();
-		List<ProviderDto> providerDtoList = new ArrayList<>();
-		for (Provider provider : providerList) {
-			providerDtoList.add(new ProviderDto(provider));
-		}
-		return providerDtoList;
+		return new ProviderController().providerList();
 	}
 }
