@@ -44,5 +44,11 @@ public class articleDaoIT {
 				DaoMemoryFactory.getFactory().getArticleDao().read(1).toString());
 
 	}
+	
+	@Test 
+	public void textListArticle() {
+		DaoCreteDaoArticle();
+		assertNotNull(DaoMemoryFactory.getFactory().getArticleDao().findAll());
+	}
 
 }

@@ -91,10 +91,9 @@ public class ArticleResourceFunctionalTesting {
 		this.CreateArticle();
 		this.CreateArticle2();
 		HttpRequest request=new HttpRequestBuilder().method(HttpMethod.GET).path(ArticleResource.ARTICLES).build();
+		assertEquals("[{\"id\":1,\"reference\":\"1\"}, {\"id\":2,\"reference\":\"2\"}]",new HttpClientService().httpRequest(request).getBody());
 		
-		System.out.println(new HttpClientService().httpRequest(request).getBody());
-//		System.out.println("{[\"id\":1,\"reference\":\"article2\"]}");
-//		assertEquals("{[\"id\":1,\"reference\":\"article2\"]}", new HttpClientService().httpRequest(request).getBody());
+
 	}
 
 }
