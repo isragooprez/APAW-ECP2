@@ -27,6 +27,12 @@ public class ProviderResourceFunctionalTesting {
 		new HttpClientService().httpRequest(request);
 
 	}
+	private void createProvider2() {
+		HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(ProviderResource.PROVIDERS)
+				.body("Santiago").build();
+		new HttpClientService().httpRequest(request);
+
+	}
 
 	@Test
 	public void testCreateProvider() {
@@ -53,6 +59,17 @@ public class ProviderResourceFunctionalTesting {
 
 		assertEquals("{\"id\":1,\"company\":\"Israel\",\"adress\":\"null\"}", new HttpClientService().httpRequest(request).getBody());
 
+	}
+	
+	@Test 
+	public void testProviderList() {
+		createProvider();
+		createProvider2();
+		HttpRequest request=new HttpRequestBuilder().method(HttpMethod.GET).path(ProviderResource.PROVIDERS).build();
+		
+		assertEquals("[{\"id\":1,\"company\":\"Israel\",\"adress\":\"null\"}, {\"id\":2,\"company\":\"Santiago\",\"adress\":\"null\"}]", new HttpClientService().httpRequest(request).getBody());
+		
+		
 	}
 
 }

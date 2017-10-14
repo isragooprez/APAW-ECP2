@@ -29,7 +29,10 @@ public class Dispatcher {
 				response.setStatus(HttpStatus.CREATED);
 			} else if (request.isEqualsPath(ArticleResource.ARTICLES + ArticleResource.ID)) {
 				response.setBody(articleResource.readArticle(Integer.valueOf(request.paths()[1])).toString());
-			} else {
+			} else if (request.isEqualsPath(ProviderResource.PROVIDERS)) {
+				response.setBody(providerResource.providerList().toString());
+			}
+			else {
 				throw new RequestInvalidException(request.getPath());
 			}
 		} catch (Exception e) {

@@ -1,5 +1,7 @@
 package apawapi.apirest.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import apawapi.apirest.dao.DaoFactory;
@@ -22,6 +24,15 @@ public class ProviderController {
 		} else {
 			return Optional.empty();
 		}
+	}
+	
+	public List<ProviderDto> providerList(){
+		List<Provider> providerList = DaoFactory.getFactory().getProviderDao().findAll();
+		List<ProviderDto> providerDtoList = new ArrayList<>();
+		for (Provider provider : providerList) {
+			providerDtoList.add(new ProviderDto(provider));
+		}
+		return providerDtoList;
 	}
 
 }
