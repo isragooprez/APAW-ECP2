@@ -46,5 +46,12 @@ public class providerDaoIT {
 		assertNull(DaoFactory.getFactory().getProviderDao().read(10));
 
 	}
+	
+	
+	@Test 
+	public void testListProvider() {
+		createProvider();
+		assertNotNull(DaoFactory.getFactory().getProviderDao().findAll());
+	}
 
 }

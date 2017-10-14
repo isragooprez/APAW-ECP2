@@ -29,10 +29,7 @@ public class Dispatcher {
 				response.setStatus(HttpStatus.CREATED);
 			} else if (request.isEqualsPath(ArticleResource.ARTICLES + ArticleResource.ID)) {
 				response.setBody(articleResource.readArticle(Integer.valueOf(request.paths()[1])).toString());
-			} else if (request.isEqualsPath(ProviderResource.PROVIDERS)) {
-				response.setBody(providerResource.providerList().toString());
-			}
-			else {
+			} else {
 				throw new RequestInvalidException(request.getPath());
 			}
 		} catch (Exception e) {
@@ -58,8 +55,8 @@ public class Dispatcher {
 			} else if (request.isEqualsPath(ProviderResource.PROVIDERS + ProviderResource.ID)) {
 				response.setBody(providerResource.readProvider(Integer.valueOf(request.paths()[1])).toString());
 			} else if (request.isEqualsPath(ArticleResource.ARTICLES)) {
-				response.setBody(articleResource.toString());
-			} else {
+				response.setBody(articleResource.listArticle().toString());
+			}else {
 				throw new RequestInvalidException(request.getPath());
 			}
 

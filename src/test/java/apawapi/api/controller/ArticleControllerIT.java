@@ -32,13 +32,18 @@ public class ArticleControllerIT {
 
 	@Test
 	public void testCreatArticle() {
-
 		createArticle();
 	}
 
 	@Test
 	public void testReadArticle() {
 		assertEquals("AricleCNN", articleController.readArticle(1).get().getReference());
+	}
+	
+	@Test
+	public void tessListArticle() {
+		createArticle();
+		assertEquals(2,articleController.articleList().size());
 	}
 
 }

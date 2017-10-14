@@ -30,7 +30,7 @@ public class ArticleResource {
 
 	}
 
-	public List<ArticleDto> voteList() {
+	public List<ArticleDto> listArticle() {
 		return new ArticleController().articleList();
 	}
 
