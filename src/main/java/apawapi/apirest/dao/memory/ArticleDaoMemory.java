@@ -1,5 +1,6 @@
 package apawapi.apirest.dao.memory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,9 +27,15 @@ public class ArticleDaoMemory extends GenericDaoMemory<Article> implements Artic
 	}
 
 	@Override
-	public List<Integer> findValueByThemeId(int themeId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Integer> findValueByArticleId(int articleId) {
+		List<Article> articles = this.findAll();
+        List<Integer> articleValue = new ArrayList<>();
+        for (Article article : articles) {
+            if (article.getProvider().getId()== articleId) {
+            	articleValue.add(article.getId());
+            }
+        }
+        return articleValue;
 	}
 
 
