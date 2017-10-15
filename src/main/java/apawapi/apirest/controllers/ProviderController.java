@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import apawapi.apirest.dao.DaoFactory;
+import apawapi.apirest.dto.ProviderArticleListDto;
 import apawapi.apirest.dto.ProviderDto;
 import apawapi.apirest.entity.Provider;
 
@@ -33,6 +34,15 @@ public class ProviderController {
 			providerDtoList.add(new ProviderDto(provider));
 		}
 		return providerDtoList;
+	}
+
+	public Optional<ProviderArticleListDto> listProviderArticles(int idProvider) {
+		if (existProviderId(idProvider)) {
+			List<Integer> articleList=DaoFactory.getFactory().getArticleDao().findValueByArticleId(idProvider);
+			return Optional.of(new ProviderArticleListDto(DaoFactory.getFactory().getProviderDao().read(idProvider), articleList));
+		}else {
+			 return Optional.empty();
+		}
 	}
 
 }

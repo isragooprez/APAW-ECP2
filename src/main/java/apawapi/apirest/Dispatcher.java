@@ -50,13 +50,15 @@ public class Dispatcher {
 		try {
 			if (request.isEqualsPath(ArticleResource.ARTICLES + ArticleResource.ID)) {
 				response.setBody(articleResource.readArticle(Integer.valueOf(request.paths()[1])).toString());
-			}else if (request.isEqualsPath(ProviderResource.PROVIDERS)) {
+			} else if (request.isEqualsPath(ProviderResource.PROVIDERS)) {
 				response.setBody(providerResource.providerList().toString());
 			} else if (request.isEqualsPath(ProviderResource.PROVIDERS + ProviderResource.ID)) {
 				response.setBody(providerResource.readProvider(Integer.valueOf(request.paths()[1])).toString());
 			} else if (request.isEqualsPath(ArticleResource.ARTICLES)) {
 				response.setBody(articleResource.listArticle().toString());
-			}else {
+			} else if (request.isEqualsPath(ProviderResource.PROVIDERS + ProviderResource.ID_ARTICLES)) {
+				response.setBody(providerResource.providerArticleListDto(Integer.valueOf(request.paths()[1])).toString());
+			} else {
 				throw new RequestInvalidException(request.getPath());
 			}
 
