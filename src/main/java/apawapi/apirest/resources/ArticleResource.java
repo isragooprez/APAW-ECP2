@@ -33,5 +33,18 @@ public class ArticleResource {
 	public List<ArticleDto> listArticle() {
 		return new ArticleController().articleList();
 	}
+	
+	public Boolean deleteArticle(Integer ArticleId) throws ArticleInvalidException, ArticleIdNoFoundException {
+
+        if (ArticleId == 0) {
+            throw new ArticleInvalidException(Integer.toString(ArticleId));
+        }
+        if (!new ArticleController().deleteArticle(ArticleId)) {
+            throw new ArticleIdNoFoundException(Integer.toString(ArticleId));
+
+        }
+        return true;
+
+    }
 
 }

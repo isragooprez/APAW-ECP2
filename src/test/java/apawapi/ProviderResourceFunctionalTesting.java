@@ -98,5 +98,35 @@ public class ProviderResourceFunctionalTesting {
 		 assertEquals("{{\"id\":1,\"company\":\"Israel\",\"adress\":\"null\"},[1, 2]}", new HttpClientService().httpRequest(request).getBody());
 
 	}
+	
+	
+	private void createProviderTest() {
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(ProviderResource.PROVIDERS).body("UPM").build();
+        new HttpClientService().httpRequest(request);
+
+    }
+
+    private void CreateArticle1Test() {
+        this.createProvider();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(ArticleResource.ARTICLES).body("1:1").build();
+        new HttpClientService().httpRequest(request);
+    }
+
+    private void CreateArticle2Test() {
+        this.createProvider();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(ArticleResource.ARTICLES).body("1:2").build();
+        new HttpClientService().httpRequest(request);
+    }
+	
+	@Test
+	public void testDeleteArticle() {
+	        this.CreateArticle1Test();
+	        this.CreateArticle2Test();
+	        
+	        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.DELETE).path(ProviderResource.PROVIDERS).path(ProviderResource.ID).body("1")
+	                .build();
+	        new HttpClientService().httpRequest(request);
+	}
+	
 
 }
