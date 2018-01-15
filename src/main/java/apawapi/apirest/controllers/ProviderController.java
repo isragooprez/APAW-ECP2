@@ -44,5 +44,20 @@ public class ProviderController {
 			 return Optional.empty();
 		}
 	}
+	
+	public Boolean deleteProvider(Integer ProviderID) {
+        if (existProviderId(ProviderID)) {
+            DaoFactory.getFactory().getProviderDao().deleteById(ProviderID);
+            List<Integer> articleList=DaoFactory.getFactory().getArticleDao().findValueByArticleId(ProviderID);
+            for (Integer article : articleList) {
+                DaoFactory.getFactory().getArticleDao().deleteById(article);
+            }
+            return true;
+        } else {
+            return false;
+
+        }
+    };
+
 
 }

@@ -43,6 +43,16 @@ public class ArticleController {
 		return articleDtoList;
 	}
 	
+	public Boolean deleteArticle(Integer ArticleID) {
+        if (existArticleId(ArticleID)) {
+            DaoFactory.getFactory().getArticleDao().deleteById(ArticleID);
+            return true;
+        } else {
+            return false;
+
+        }
+    };
+	
 	
 	
 
